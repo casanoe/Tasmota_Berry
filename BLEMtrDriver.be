@@ -7,6 +7,7 @@
 
  import global
  global.BLEMtrDriver_value = {}
+ #global.BLEMtrDriver_bledev = {}
  
  class BLEMtrDriver
    var ok
@@ -36,7 +37,7 @@
        var se = json.load(tasmota.read_sensors())
        var dev
        self.remove_allrules()
-       self.add_rule_ble()
+       #self.add_rule_ble()
        for v:d1
          if v.find('filter')
            dev = string.split(v['filter'], '#')[0]
@@ -49,7 +50,7 @@
      end
    end
  
-   def add_rule_ble()
+   #- def add_rule_ble()
      log("BLEMtrDriver: Add rule BLE ", 3)
      tasmota.add_rule("BLEDevices", 
        def(value) 
@@ -58,7 +59,7 @@
          global.BLEMtrDriver_bledev = value
        end
        , "BLEMtrDriver_BLEDevices")
-     end
+     end -#
 
    def add_rule(dev)
      log("BLEMtrDriver: Add rule "..dev, 3)
